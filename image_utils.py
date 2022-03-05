@@ -9,7 +9,7 @@ def show_images(images, n_rows, n_columns, fig_size=None, titles=[], title_sizes
     """ Plot multiple numpy images
 
     Args:
-        images (list): The numpy images
+        images (list): The list of numpy images
         n_rows (int): number of rows in the figure
         n_columns (int): number of column in the figure
         fig_size (tuple(int, int)): size of the figure
@@ -19,6 +19,7 @@ def show_images(images, n_rows, n_columns, fig_size=None, titles=[], title_sizes
         sup_title (str): the title of the figure
         sup_title_size (int): size of sup_title
     """
+    
     assert type(images) == list, print('Type of images is not a list')
     assert len(images) <= n_rows * n_columns, print('Number of image greater than size of grid')
 
@@ -48,7 +49,7 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
     """ Plot boxes into the image
 
     Args:
-        image (numpy array): the drawing image
+        image (numpy.array): the drawing image
         boxes (list): drawing boxes. Each box is a list containing [xmin, ymin, xmax, ymax]
     """
 
@@ -72,6 +73,3 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
     for b, c, th, te in zip(box, color, thickness, text):
         cv2.rectangle(image, (b[0], b[1]), (b[2], b[2]), color=c, thickness=th)
         cv2.putText(image, te, (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=c, thickness=th)
-
-def stick_image(image, stick_images):
-    return

@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 
 
-def show_images(images, n_rows, n_columns, fig_size=None, titles=[], title_sizes=14, save_file='', sup_title='', sup_title_size=20):
+def show_images(images, n_rows=1, n_columns=1, fig_size=None, titles=[], title_sizes=14, save_file='', sup_title='', sup_title_size=20):
     """ Plot multiple numpy images
 
     Args:
@@ -19,7 +19,7 @@ def show_images(images, n_rows, n_columns, fig_size=None, titles=[], title_sizes
         sup_title (str): the title of the figure
         sup_title_size (int): size of sup_title
     """
-    
+
     assert type(images) == list, print('Type of images is not a list')
     assert len(images) <= n_rows * n_columns, print('Number of image greater than size of grid')
 
@@ -71,5 +71,5 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
         assert len(box) == len(text), print(f'Assert length of boxes and texts are are the same, len(boxes = {len(box)} and len(text) = {len(text)}')
 
     for b, c, th, te in zip(box, color, thickness, text):
-        cv2.rectangle(image, (b[0], b[1]), (b[2], b[2]), color=c, thickness=th)
+        cv2.rectangle(image, (b[0], b[1]), (b[2], b[3]), color=c, thickness=th)
         cv2.putText(image, te, (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=c, thickness=th)

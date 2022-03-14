@@ -52,7 +52,7 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
         image (numpy.array): the drawing image
         boxes (list): drawing boxes. Each box is a list containing [xmin, ymin, xmax, ymax]
     """
-
+    box = np.array(box, dtype=np.int32)
     if np.array(box).ndim == 1:
         box = [box]
     if isinstance(thickness, int):
@@ -72,4 +72,4 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
 
     for b, c, th, te in zip(box, color, thickness, text):
         cv2.rectangle(image, (b[0], b[1]), (b[2], b[3]), color=c, thickness=th)
-        cv2.putText(image, te, (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=2, color=c, thickness=th)
+        cv2.putText(image, te, (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=c, thickness=th)

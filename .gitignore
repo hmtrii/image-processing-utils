@@ -1,3 +1,4 @@
 test-images/
 test-output/
 __pycache__/
+test.py

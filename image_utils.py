@@ -56,7 +56,7 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
         A ploted image.
     """
 
-    plot_image = image.coppy()
+    plot_image = image.copy()
     box = np.array(box, dtype=np.int32)
     if np.array(box).ndim == 1:
         box = [box]
@@ -77,4 +77,7 @@ def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
 
     for b, c, th, te in zip(box, color, thickness, text):
         cv2.rectangle(plot_image, (b[0], b[1]), (b[2], b[3]), color=c, thickness=th)
-        cv2.putText(plot_image, te, (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=c, thickness=th)
+        cv2.putText(plot_image, str(te), (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=c, thickness=th)
+    
+    return plot_image
+

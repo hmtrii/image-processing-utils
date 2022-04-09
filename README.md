@@ -7,3 +7,5 @@
 - [Calculate overlap area of 2 boxes](./box_utils.py#L4)
 - [Calculate IoU of 2 boxes](./box_utils.py#L22)
 - [Non-max suppression](./box_utils.py#L37)
+- [Get list boxes that overlap with the other list boxes](./box_utils.py#83)
+- [Get list boxes that not overlap with the other list boxes](./box_utils.py#136)

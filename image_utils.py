@@ -5,7 +5,7 @@ from PIL import Image
 import numpy as np
 
 
-def show_images(images, n_rows=1, n_columns=1, fig_size=None, titles=[], title_sizes=14, save_file='', sup_title='', sup_title_size=20):
+def show_images(images :np.array, n_rows: int=1, n_columns: int=1, fig_size: tuple=None, titles: list=[], title_sizes: int=14, save_file: str='', sup_title: str='', sup_title_size: int=20) -> None:
     """ Plot multiple numpy images
 
     Args:
@@ -45,7 +45,7 @@ def show_images(images, n_rows=1, n_columns=1, fig_size=None, titles=[], title_s
     if save_file:
         plt.savefig(save_file)
 
-def plot_boxes(image, box, color=(255, 0, 0), thickness=2, text=[]):
+def plot_boxes(image: np.array, box: list, color: tuple=(255, 0, 0), thickness: int=2, text :list=[]) -> np.array:
     """ Plot boxes into the image
 
     Args:

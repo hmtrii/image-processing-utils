@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def overlap_area(box1, box2):
+def overlap_area(box1: list, box2: list) -> float:
     """ Calculate IoU of 2 input boxes
 
     Args:
@@ -19,7 +19,7 @@ def overlap_area(box1, box2):
                     max(0, y_max_union - y_min_union)
     return inter_area
 
-def IoU(box1, box2):
+def IoU(box1: list, box2: list) -> float:
     """ Calculate IoU of 2 input boxes
 
     Args:
@@ -35,7 +35,7 @@ def IoU(box1, box2):
     iou = float(inter_area / (union_area - inter_area))
     return iou
 
-def nms(boxes, score=[], overlap_thresh=0.3):
+def nms(boxes: list, score: list=[], overlap_thresh: float=0.3) -> np.array:
     """Apply non-maximum suppression to boxes
 
     Args:
@@ -80,7 +80,7 @@ def nms(boxes, score=[], overlap_thresh=0.3):
             np.where(overlap > overlap_thresh)[0])))
     return boxes[pick_id].astype('int')
 
-def get_overlap_boxes(boxes_A, boxes_B, thresh=0.0):
+def get_overlap_boxes(boxes_A: list, boxes_B: list, thresh: float=0.0) -> np.array:
     """Get boxes in boxes_A that overlap boxes in boxes_B
     
     Args:
@@ -133,7 +133,7 @@ def get_overlap_boxes(boxes_A, boxes_B, thresh=0.0):
 
     return boxes_A[pick_idxs].astype("int")
 
-def get_not_overlap_boxes(boxes_A, boxes_B, thresh=0.0):
+def get_not_overlap_boxes(boxes_A: list, boxes_B: list, thresh: float=0.0) -> np.array:
     """Get boxes in boxes_A that are not overlap boxes in boxes_B
     
     Args:

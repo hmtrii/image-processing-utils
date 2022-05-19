@@ -45,7 +45,7 @@ def show_images(images :np.array, n_rows: int=1, n_columns: int=1, fig_size: tup
     if save_file:
         plt.savefig(save_file)
 
-def plot_boxes(image: np.array, box: list, color: tuple=(255, 0, 0), thickness: int=2, text :list=[]) -> np.array:
+def plot_boxes(image: np.array, boxes: list, color: tuple=(255, 0, 0), thickness: int=2, text :list=[]) -> np.array:
     """ Plot boxes into the image
 
     Args:
@@ -57,25 +57,26 @@ def plot_boxes(image: np.array, box: list, color: tuple=(255, 0, 0), thickness: 
     """
 
     plot_image = image.copy()
-    box = np.array(box, dtype=np.int32)
-    if np.array(box).ndim == 1:
-        box = [box]
+    boxes = np.array(boxes, dtype=np.int32)
+    if np.array(boxes).ndim == 1:
+        boxes = [boxes]
     if isinstance(thickness, int):
-        thickness = [thickness] * len(box)
+        thickness = [thickness] * len(boxes)
     else:
-        assert len(box) == len(thickness), print(f'Assert length of boxes and thickness are the same, len(boxes) = {len(box)} and len(color) = {len(thickness)}')
+        assert len(boxes) == len(thickness), print(f'Assert length of boxes and thickness are the same, len(boxes) = {len(boxes)} and len(color) = {len(thickness)}')
     if np.array(color).ndim == 1:
-        color = [color] * len(box)
+        color = [color] * len(boxes)
     else:
-        assert len(box) == len(color), print(f'Assert length of boxes and color are the same, len(boxes) = {len(box)} and len(color) = {len(color)}')
+        assert len(boxes) == len(color), print(f'Assert length of boxes and color are the same, len(boxes) = {len(boxes)} and len(color) = {len(color)}')
     if not text:
-        text = [None] * len(box)
-    if isinstance(text, str):
-        text = [text] * len(box)
+        text = [None] * len(boxes)
+    elif isinstance(text, str):
+        text = [text] * len(boxes)
     else:
-        assert len(box) == len(text), print(f'Assert length of boxes and texts are are the same, len(boxes = {len(box)} and len(text) = {len(text)}')
+        assert len(boxes) == len(text), print(f'Assert length of boxes and texts are are the same, len(boxes = {len(boxes)} and len(text) = {len(text)}')
+        text = [str(x) for x in text]
 
-    for b, c, th, te in zip(box, color, thickness, text):
+    for b, c, th, te in zip(boxes, color, thickness, text):
         cv2.rectangle(plot_image, (b[0], b[1]), (b[2], b[3]), color=c, thickness=th)
         cv2.putText(plot_image, str(te), (b[0], b[1]), fontFace=cv2.FONT_HERSHEY_SIMPLEX, fontScale=1, color=c, thickness=th)
     
